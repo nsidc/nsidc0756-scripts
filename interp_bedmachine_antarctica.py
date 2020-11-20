@@ -31,7 +31,7 @@ def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
 
     if variable == 'ice_mask':
         # This is a derived value.
-	# the MATLAB source code states:
+        # the MATLAB source code states:
         #   ice ocean interface is between 0 and 3, so we might get some 1 by
         #   interpolating
         ice_mask = xr_ds.mask.copy()
