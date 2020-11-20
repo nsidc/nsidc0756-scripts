@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # Example usage
     to_x = np.linspace(-1666500.0, 1666500.0, 13332)
     to_y = np.linspace(-1666500.0, 1666500.0, 13332)
-    variable = 'ice_mask'
+    variable = 'bed'
     bedmachine_nc_path = './BedMachineAntarctica_2019-11-05_v01.nc'
 
     interpolated = interp_bedmachine_antarctica(
