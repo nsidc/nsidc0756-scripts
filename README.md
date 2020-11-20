@@ -69,3 +69,18 @@ array([[-4442.84863281, -4442.40963504, -4441.97063731, ...,
        [-4018.03344727, -4019.59069298, -4021.14789963, ...,
           287.89288765,   284.17862334,   280.46411133]])
 ```
+
+## Open Questions:
+
+The original `interpBedMachineAntarctica.m` code has a few open questions:
+
+* The matlab code has a special case for the `ice_mask` variable, which is not a
+part of the dataset itself. For `ice_mask` we take the mask variable and convert
+values of 3 to 0. Then bilinear interpolation is performed on that variable. Is
+this expected? It seems like this variable should also use nearest neighbor
+interpolation instead.
+
+* The `FastInterp` function has a note that says "Use MATLAB's interp2 if we
+  have too many points to interpolate onto", but the actual code only uses
+  `interp2` if the `xi` data have a size < 1000. Larger sizes use a custom
+  algorithm for nearest neighbor and bilinear interpolation. Is this correct?
