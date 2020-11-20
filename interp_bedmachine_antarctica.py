@@ -2,7 +2,7 @@ import numpy as np
 import xarray as xr
 
 
-POSSIBLE_VARIABLES = (
+_POSSIBLE_VARIABLES = (
     'mask',
     'ice_mask',
     'firn',
@@ -14,14 +14,18 @@ POSSIBLE_VARIABLES = (
 )
 
 
-def interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
-    """Interpolate `variable` onto `to_x`, `to_y` coordinates.
+def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
+    """Interpolate `variable` onto `to_x`, `to_y` coordinates using xarray.
+
+    xarray's `interp` method should roughly correspond to MATLAB's `interp2`.
     
-    to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
-    to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
-    variable: string representing variable to interpolate
+    Args:
+        to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
+        to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
+        variable: string representing variable to interpolate
     
-    Returns a 2D numpy array of interpolated values.
+    Returns:
+        a 2D numpy array of interpolated values.
     """
     xr_ds = xr.open_dataset(bedmachine_nc_path)
 
@@ -52,12 +56,29 @@ def interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
 
 
 def interp_bedmachine_antarctica(to_x, to_y, variable, *, bedmachine_nc_path):
-    if variable not in POSSIBLE_VARIABLES:
+    """Interpolate `variable` onto `to_x`, `to_y` coordinates.
+
+    NOTE:
+        This is not a perfect reproduction of the code in
+        interpBedMachineAntarctica.m. When used with a `to_x` array of <1000,
+        this code should perform in roughly the same way. When interpolating
+        onto larger grids, interpBedMachineAntarctica.m uses a custom
+        interpolation algorithm that has not yet been implemented in Python.
+
+    Args:
+        to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
+        to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
+        variable: string representing variable to interpolate
+
+    Returns:
+        a 2D numpy array of interpolated values.
+    """
+    if variable not in _POSSIBLE_VARIABLES:
         raise RuntimeError(
             f'Unexpected variable name {variable}. Must be one of {possible_variables}'
         )
 
-    return interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path)
+    return _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path)
 
 
 if __name__ == '__main__':
