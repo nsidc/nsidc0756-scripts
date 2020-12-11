@@ -42,7 +42,7 @@ def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
 
     # Note, 'ice_mask' is not considered 'mask' in the matlab code, so it ends
     # up with method=linear.
-    if variable in ('mask', 'source'):
+    if variable in ('mask', 'ice_mask', 'source'):
         method = 'nearest'
     else:
         # xarray's linear interpolation is similar to matlab's `interp2` with
