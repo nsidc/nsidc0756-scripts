@@ -52,7 +52,7 @@ else
 end
 
 disp(['   -- BedMachine Antarctica: interpolating ' string]);
-if strcmp(string,'mask') | strcmp(string,'source'),
+if strcmp(string,'mask') | strcmp(string,'icemask') | strcmp(string,'source'),
 	%Need nearest neighbor to avoid interpolation between 0 and 2
 	output = FastInterp(xdata,ydata,data,X,Y,'nearest');
 else
