@@ -4,7 +4,7 @@ import xarray as xr
 
 _POSSIBLE_VARIABLES = (
     'mask',
-    'ice_mask',
+    'icemask',
     'firn',
     'surface',
     'bed',
@@ -29,20 +29,20 @@ def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
     """
     xr_ds = xr.open_dataset(bedmachine_nc_path)
 
-    if variable == 'ice_mask':
+    if variable == 'icemask':
         # This is a derived value.
         # the MATLAB source code states:
         #   ice ocean interface is between 0 and 3, so we might get some 1 by
         #   interpolating
-        ice_mask = xr_ds.mask.copy()
-        ice_mask = ice_mask.where(ice_mask != 3, other=0)
-        xr_variable = ice_mask
+        icemask = xr_ds.mask.copy()
+        icemask = icemask.where(icemask != 3, other=0)
+        xr_variable = icemask
     else:
         xr_variable = xr_ds[variable]
 
-    # Note, 'ice_mask' is not considered 'mask' in the matlab code, so it ends
+    # Note, 'icemask' is not considered 'mask' in the matlab code, so it ends
     # up with method=linear.
-    if variable in ('mask', 'ice_mask', 'source'):
+    if variable in ('mask', 'icemask', 'source'):
         method = 'nearest'
     else:
         # xarray's linear interpolation is similar to matlab's `interp2` with
