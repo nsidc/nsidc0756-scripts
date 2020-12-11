@@ -62,7 +62,7 @@ end
 end
 function zi = FastInterp(x,y,data,xi,yi,method)
 
-	%Use MATLAB's  interp2 if we have too many points to interpolate onto
+	%Use MATLAB's  interp2 if we have too few points to interpolate onto
 	if numel(xi)<10^4,
 		zi = interp2(x,y,data,xi,yi,method);
 		return
