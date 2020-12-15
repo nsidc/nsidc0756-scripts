@@ -1,3 +1,5 @@
+![NSIDC logo](/images/NSIDC_logo_2018_poster-1.png)
+
 nsidc0756-scripts
 ---
 
