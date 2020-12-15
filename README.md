@@ -5,6 +5,14 @@ Various scripts related to [NSIDC-0725](https://nsidc.org/data/nsidc-0725):
 MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from SAR and Landsat. This
 repository is a work in progress!
 
+## Level of Support
+
+* This repository is fully supported by NSIDC. If you discover any problems or
+  bugs, please submit an Issue. If you would like to contribute to this
+  repository, you may fork the repository and submit a pull request.
+
+See the [LICENSE](LICENSE.md) for details on permissions and warranties.  Please
+contact nsidc@nsidc.org for more information.
 
 # xy2ll.m | xy2ll.py
 
