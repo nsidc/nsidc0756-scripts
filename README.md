@@ -1,5 +1,10 @@
-nsidc0756-m2py
+nsidc0756-scripts
 ---
+
+Various scripts related to [NSIDC-0725](https://nsidc.org/data/nsidc-0725):
+MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from SAR and Landsat. This
+repository is a work in progress!
+
 
 # xy2ll.m | xy2ll.py
 
