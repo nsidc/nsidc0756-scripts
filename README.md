@@ -3,9 +3,20 @@
 nsidc0756-scripts
 ---
 
-Various scripts related to [NSIDC-0725](https://nsidc.org/data/nsidc-0725):
-MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from SAR and Landsat. This
-repository is a work in progress!
+Scripts related to [NSIDC-0756](https://nsidc.org/data/nsidc-0756): MEaSUREs
+BedMachine Antarctica, Version 2. This repository is a work in progress! 
+
+The scripts that are currently in this repository can be used to convert between
+geographic lat/lon and polar stereographic coordinates, and for interpolating
+BedMachine Antarctica data onto custom coordinates.
+
+For example, one could interpolate bedrock elevation values from BedMachine
+Antarctica onto a latitude/longitude grid. First, use the `ll2xy` script to
+convert lat/lon coordinates to polar stereographic coordinates. Then these
+coordinates can be used as input for the `interpBedmachineantarctica` script which
+will interpolate BedMachine Antarctica values onto the input coordinates. The
+scripts are available both as Matlab and python scripts, for further details
+please see below.
 
 ## Level of Support
 
@@ -16,15 +27,17 @@ repository is a work in progress!
 See the [LICENSE](LICENSE.md) for details on permissions and warranties.  Please
 contact nsidc@nsidc.org for more information.
 
-# xy2ll.m | xy2ll.py
+# Scripts
+
+## xy2ll.m | xy2ll.py
 
 Converts polar stereographic (x, y) coodinates to geodetic (latitude, longitude) coordinates.
 
-# ll2xy.m | ll2xy.py
+## ll2xy.m | ll2xy.py
 
 Converts geodetic (latitude, longitude) coordinates to polar sterographic (x, y) coordinates.
 
-# interpBedmachineantarctica.m | interp_bedmachine_antarctica.py
+## interpBedmachineantarctica.m | interp_bedmachine_antarctica.py
 
 Interpolates values from the BedMachineAntarctica netcdf file onto requested (x,
 y) polar stereographic coordinates.
@@ -40,7 +53,7 @@ has not yet been implemented in Python.
 Outputs from `interpBedMachineAntarctica.m` have not been directly compared to
 `interp_bedmachine_antarctica.py` yet. Results may differ.
 
-## Setup
+### Setup
 
 To use `interp_bedmachine_antarctica.py`, the requirements listed under
 `environment.yml` must be installed.
@@ -52,7 +65,7 @@ $ conda env create -f environment.yml
 $ conda activate interp_bedmachine
 ```
 
-## Example usage:
+#### Example usage:
 
 ```
 $ python
