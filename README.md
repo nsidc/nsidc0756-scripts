@@ -8,7 +8,7 @@ BedMachine Antarctica, Version 2. This repository is a work in progress!
 
 The scripts that are currently in this repository can be used to convert between
 geographic lat/lon and polar stereographic coordinates, and for interpolating
-BedMachine Antarctica data onto custom coordinates.
+BedMachine Antarctica data onto user-defined coordinates.
 
 For example, one could interpolate bedrock elevation values from BedMachine
 Antarctica onto a latitude/longitude grid. First, use the `ll2xy` script to
