@@ -1,4 +1,6 @@
-![NSIDC logo](/images/NSIDC_logo_2018_poster-1.png)
+![NSIDC logo](/images/nsidc_logo.png)
+![NSIDC DAAC Logo](/images/nsidc_daac_logo.png)
+![NASA logo](/images/nasa_logo.png)
 
 nsidc0756-scripts
 ---
