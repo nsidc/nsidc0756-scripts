@@ -77,7 +77,6 @@ $ python
 >>> to_y = np.linspace(-1666500.0, 1666500.0, 13332)
 >>> variable = 'bed'
 >>> bedmachine_nc_path = './BedMachineAntarctica_2019-11-05_v01.nc'
-
 >>> interpolated = interp_bedmachine_antarctica(
         to_x,
         to_y,
