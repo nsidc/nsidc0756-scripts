@@ -5,6 +5,10 @@ from interp_bedmachine_antarctica import interp_bedmachine_antarctica
 BEDMACHINE_NC_PATH = './BedMachineAntarctica_2019-11-05_v01.nc'
 VARIABLE = 'bed'
 
+# Set to `True` to get a grid of values instead of just the points represented
+# by `to_x` and `to_y`
+RETURN_AS_GRID = False
+
 
 lats = [-84.72, -82.03, -83.96, -79.07]
 lons = [92.41, 85.11, 65.65, 77.67]
@@ -22,7 +26,7 @@ interpolated = interp_bedmachine_antarctica(
     to_x,
     to_y,
     VARIABLE,
-    return_grid=False,
+    return_grid=RETURN_AS_GRID,
     bedmachine_nc_path=BEDMACHINE_NC_PATH
 )
 
