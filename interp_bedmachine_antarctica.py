@@ -67,8 +67,6 @@ def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path, *, return
         method=method
     )
 
-    breakpoint()
-
     # Return a numpy array to be consistent with the other python scripts.
     return result.values
 
