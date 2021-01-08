@@ -12,7 +12,7 @@ lons = [92.41, 85.11, 65.65, 77.67]
 to_x = []
 to_y = []
 
-for lat, lon in zip(l1, l2):
+for lat, lon in zip(lats, lons):
     x, y = ll2xy(lat, lon, -1)
     to_y.append(y)
     to_x.append(x)
