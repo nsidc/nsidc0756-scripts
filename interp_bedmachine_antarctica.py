@@ -55,6 +55,15 @@ def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path, *, return
         method = 'linear'
 
     if not return_grid:
+        # if `return_grid` is False, `to_x` and `to_y` should be the same
+        # length (each pair of values represents a point). Ultimately, we should
+        # probably change this interface to make it clearer what the input args
+        # represent.
+        if len(to_x) != len(to_y):
+            raise RuntimeError(
+                'When `return_grid` is False, `to_x` and `to_y` must be arrays of the same length.'
+            )
+
         # https://xarray.pydata.org/en/stable/indexing.html#more-advanced-indexing
         to_x = xr.DataArray(to_x, dims='z')
         to_y = xr.DataArray(to_y, dims='z')
