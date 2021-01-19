@@ -14,15 +14,20 @@ _POSSIBLE_VARIABLES = (
 )
 
 
-def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
+def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path, *, return_grid):
     """Interpolate `variable` onto `to_x`, `to_y` coordinates using xarray.
 
     xarray's `interp` method should roughly correspond to MATLAB's `interp2`.
     
     Args:
-        to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
-        to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
-        variable: string representing variable to interpolate
+        * to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
+        * to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
+        * variable: string representing variable to interpolate
+        * return_grid (Bool): if True, return a grid of interpolated points of
+          size `to_x` by `to_y`. E.g., if to_x is an array of length 2 and to_y
+          is an array of length 3, a grid of size 2x3 will will be
+          returned. Otherwies, only the coodinate pairs represented by `to_x`
+          and `to_y` will be returned (the diagonal of the grid).
     
     Returns:
         a 2D numpy array of interpolated values.
@@ -49,13 +54,33 @@ def _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path):
         # method=bilinear
         method = 'linear'
 
-    result = xr_variable.interp(coords={'x': to_x, 'y': to_y}, method=method)
+    if not return_grid:
+        # if `return_grid` is False, `to_x` and `to_y` should be the same
+        # length (each pair of values represents a point). Ultimately, we should
+        # probably change this interface to make it clearer what the input args
+        # represent.
+        if len(to_x) != len(to_y):
+            raise RuntimeError(
+                'When `return_grid` is False, `to_x` and `to_y` must be arrays of the same length.'
+            )
+
+        # https://xarray.pydata.org/en/stable/indexing.html#more-advanced-indexing
+        to_x = xr.DataArray(to_x, dims='z')
+        to_y = xr.DataArray(to_y, dims='z')
+
+    result = xr_variable.interp(
+        coords={
+            'x': to_x,
+            'y': to_y
+        },
+        method=method
+    )
 
     # Return a numpy array to be consistent with the other python scripts.
     return result.values
 
 
-def interp_bedmachine_antarctica(to_x, to_y, variable, *, bedmachine_nc_path):
+def interp_bedmachine_antarctica(to_x, to_y, variable, return_grid=False, *, bedmachine_nc_path):
     """Interpolate `variable` onto `to_x`, `to_y` coordinates.
 
     NOTE:
@@ -66,9 +91,15 @@ def interp_bedmachine_antarctica(to_x, to_y, variable, *, bedmachine_nc_path):
         interpolation algorithm that has not yet been implemented in Python.
 
     Args:
-        to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
-        to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
-        variable: string representing variable to interpolate
+        * to_x: 1D numpy array representing x coordinates to interpolate `variable` onto
+        * to_y: 1D numpy array representing y coordinates to interpolate `variable` onto
+        * variable: string representing variable to interpolate
+        * return_grid (Bool): if True, return a grid of interpolated points of
+          size `to_x` by `to_y`. E.g., if to_x is an array of length 2 and to_y
+          is an array of length 3, a grid of size 2x3 will will be
+          returned. Otherwies, only the coodinate pairs represented by `to_x`
+          and `to_y` will be returned (the diagonal of the grid).
+        * bedmachine_nc_path (required kwarg):
 
     Returns:
         a 2D numpy array of interpolated values.
@@ -78,7 +109,13 @@ def interp_bedmachine_antarctica(to_x, to_y, variable, *, bedmachine_nc_path):
             f'Unexpected variable name {variable}. Must be one of {possible_variables}'
         )
 
-    return _interpolate_with_xarray(to_x, to_y, variable, bedmachine_nc_path)
+    return _interpolate_with_xarray(
+        to_x,
+        to_y,
+        variable,
+        bedmachine_nc_path,
+        return_grid=return_grid
+    )
 
 
 if __name__ == '__main__':
