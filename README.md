@@ -67,7 +67,7 @@ $ conda env create -f environment.yml
 $ conda activate interp_bedmachine
 ```
 
-#### Example usage:
+#### Example usage (Python):
 
 ```
 $ python
@@ -97,4 +97,20 @@ array([[-4442.84863281, -4442.40963504, -4441.97063731, ...,
           264.8464815 ,   262.60142472,   260.35621881],
        [-4018.03344727, -4019.59069298, -4021.14789963, ...,
           287.89288765,   284.17862334,   280.46411133]])
+```
+
+#### Example usage (MATLAB):
+
+```
+% Input lat. and lon. and they can be an array or a list.
+lat = [-84.72, -82.03; -83.96, -79.07];
+lon = [92.41 ,85.11; 65.65, 77.67];
+
+% For each lat., lon. calculate the stereographic coordinates
+[x,y] = ll2xy(lat, lon, -1);
+
+% Interpolate the Bedmachine values onto the coordinates
+bed = interpBedmachineAntarctica(x,y,'bed');
+
+disp(bed)
 ```
