@@ -21,7 +21,6 @@ for lat, lon in zip(lats, lons):
     to_y.append(y)
     to_x.append(x)
 
-
 interpolated = interp_bedmachine_antarctica(
     to_x,
     to_y,
