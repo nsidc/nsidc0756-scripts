@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2020 Regents of the University of Colorado
+Copyright (c) 2021 Regents of the University of Colorado
 
 This software was developed by the National Snow and Ice Data Center with funding from multiple sources.
 
