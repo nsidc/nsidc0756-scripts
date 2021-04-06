@@ -114,3 +114,16 @@ bed = interpBedmachineAntarctica(x,y,'bed');
 
 disp(bed)
 ```
+
+## License
+
+See [LICENSE](LICENSE.md).
+
+## Code of Conduct
+
+See [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Credit
+
+This software was developed by the National Snow and Ice Data Center with
+funding from multiple sources.
