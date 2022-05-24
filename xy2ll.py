@@ -4,8 +4,7 @@ import numpy as np
 
 
 def xy2ll(x, y, sgn, *args):
-    '''
-    XY2LL - converts xy to lat long
+    """Convert x y arrays to lat long arrays.
 
     Converts Polar  Stereographic (X, Y) coordinates for the polar regions to
     latitude and longitude Stereographic (X, Y) coordinates for the polar
@@ -13,14 +12,13 @@ def xy2ll(x, y, sgn, *args):
     Author: Michael P. Schodlok, December 2003 (map2xy.m)
 
     Usage:
-       [lat, lon] = xy2ll(x, y, sgn)
-       [lat, lon] = xy2ll(x, y, sgn, central_meridian, standard_parallel)
+        [lat, lon] = xy2ll(x, y, sgn)
+        [lat, lon] = xy2ll(x, y, sgn, central_meridian, standard_parallel)
 
-     - sgn = Sign of latitude	1 : north latitude (default is mer = 45 lat = 70)
-     						   -1 : south latitude (default is mer = 0  lat = 71)
-    '''
-
-    #Get central_meridian and standard_parallel depending on hemisphere
+        - sgn = Sign of latitude    1 : north latitude (default is mer = 45 lat = 70)
+                                   -1 : south latitude (default is mer = 0  lat = 71)
+    """
+    # Get central_meridian and standard_parallel depending on hemisphere
     if len(args) == 2:
         delta = args[0]
         slat = args[1]
@@ -28,24 +26,32 @@ def xy2ll(x, y, sgn, *args):
         if sgn == 1:
             delta = 45.
             slat = 70.
-            print('        xy2ll: creating coordinates in north polar stereographic (Std Latitude: 70degN Meridian: 45deg)')
+            print(
+                '       '
+                ' xy2ll: creating coordinates in north polar stereographic'
+                ' (Std Latitude: 70degN Meridian: 45deg)'
+            )
         elif sgn == -1:
             delta = 0.
             slat = 71.
-            print('        xy2ll: creating coordinates in south polar stereographic (Std Latitude: 71degS Meridian: 0deg)')
+            print(
+                '       '
+                ' xy2ll: creating coordinates in south polar stereographic'
+                ' (Std Latitude: 71degS Meridian: 0deg)'
+            )
         else:
             raise ValueError('sgn should be either 1 or -1')
     else:
         raise Exception('bad usage: type "help(xy2ll)" for details')
 
     # if x, y passed as lists, convert to np.arrays
-    if type(x) != "np.ndarray":
+    if type(x) != 'np.ndarray':
         x = np.array(x)
-    if type(y) != "np.ndarray":
+    if type(y) != 'np.ndarray':
         y = np.array(y)
 
     # Conversion constant from degrees to radians
-    #cde = 57.29577951
+    # cde = 57.29577951
     # Radius of the earth in meters
     re = 6378.273 * 10**3
     # Eccentricity of the Hughes ellipsoid squared
