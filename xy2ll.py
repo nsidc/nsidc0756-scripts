@@ -1,9 +1,15 @@
 from math import pi
+from typing import Literal
 
 import numpy as np
 
 
-def xy2ll(x, y, sgn, *args):
+def xy2ll(
+    x: np.ndarray,
+    y: np.ndarray,
+    sgn: Literal[1, -1],
+    *args,
+) -> tuple[np.ndarray, np.ndarray]:
     """Convert x y arrays to lat long arrays.
 
     Converts Polar  Stereographic (X, Y) coordinates for the polar regions to
@@ -11,12 +17,20 @@ def xy2ll(x, y, sgn, *args):
     regions.
     Author: Michael P. Schodlok, December 2003 (map2xy.m)
 
+    Parameters:
+        - x: np.ndarray with a float dtype
+        - y: np.ndarray with a float dtype
+        - sgn (sign of latitude): integer (1 or -1) inidcating the hemisphere.
+              1 : north latitude (default is mer = 45 lat = 70).
+              -1 : south latitude (default is mer = 0  lat = 71).
+        - *args: optional args. First optional arg is `delta` and second is
+           `slat`. Review code for how these are used in practice.
+    Returns:
+        - (lat, lon)
+
     Usage:
         [lat, lon] = xy2ll(x, y, sgn)
         [lat, lon] = xy2ll(x, y, sgn, central_meridian, standard_parallel)
-
-        - sgn = Sign of latitude    1 : north latitude (default is mer = 45 lat = 70)
-                                   -1 : south latitude (default is mer = 0  lat = 71)
     """
     # Get central_meridian and standard_parallel depending on hemisphere
     if len(args) == 2:
