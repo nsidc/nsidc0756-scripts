@@ -2,14 +2,15 @@ from math import pi
 from typing import Literal
 
 import numpy as np
+from numpy.typing import ArrayLike
 
 
 def xy2ll(
-    x: np.ndarray,
-    y: np.ndarray,
+    x: ArrayLike,
+    y: ArrayLike,
     sgn: Literal[1, -1],
     *args,
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[ArrayLike, ArrayLike]:
     """Convert x y arrays to lat long arrays.
 
     Converts Polar  Stereographic (X, Y) coordinates for the polar regions to
@@ -18,8 +19,8 @@ def xy2ll(
     Author: Michael P. Schodlok, December 2003 (map2xy.m)
 
     Parameters:
-        - x: np.ndarray with a float dtype
-        - y: np.ndarray with a float dtype
+        - x: ArrayLike (float scalar or array)
+        - y: ArrayLike (float scalar or array)
         - sgn (sign of latitude): integer (1 or -1) inidcating the hemisphere.
               1 : north latitude (default is mer = 45 lat = 70).
               -1 : south latitude (default is mer = 0  lat = 71).
@@ -59,9 +60,9 @@ def xy2ll(
         raise Exception('bad usage: type "help(xy2ll)" for details')
 
     # if x, y passed as lists, convert to np.arrays
-    if type(x) != 'np.ndarray':
+    if not np.issubdtype(type(x), np.ndarray):
         x = np.array(x)
-    if type(y) != 'np.ndarray':
+    if not np.issubdtype(type(y), np.ndarray):
         y = np.array(y)
 
     # Conversion constant from degrees to radians
