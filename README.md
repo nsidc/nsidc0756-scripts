@@ -35,6 +35,30 @@ contact nsidc@nsidc.org for more information.
 
 Converts polar stereographic (x, y) coodinates to geodetic (latitude, longitude) coordinates.
 
+Usage example for `xy2ll.py`:
+
+```
+from netCDF4 import Dataset
+
+from xy2ll import xy2ll
+
+ds = Dataset('BedMachineAntarctica_2019-11-05_v01.nc')
+xs = ds.variables['x'][:]
+ys = ds.variables['y'][:]
+
+# cast xs and ys as float. `xy2ll` will not return correct results
+# otherwise.
+xs = xs.astype(float)
+ys = ys.astype(float)
+
+lats, lons = xy2ll(
+    xs,
+    ys,
+    -1,  # -1 is a flag indicating the southern hemisphere.
+)
+```
+
+
 ## ll2xy.m | ll2xy.py
 
 Converts geodetic (latitude, longitude) coordinates to polar sterographic (x, y) coordinates.
