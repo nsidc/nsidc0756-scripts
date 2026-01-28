@@ -17,7 +17,7 @@ function output = interpBedmachineAntarctica(X,Y,string),
 if nargin<3, string = 'bed'; end
 
 %Path to dataset (might need to be changed manually)
-nc = './BedMachineAntarctica-2019-09-05.nc';
+nc = './NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc';
 
 %Load x and y from dataset
 xdata = double(ncread(nc,'x'));

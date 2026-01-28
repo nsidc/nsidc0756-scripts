@@ -123,7 +123,7 @@ if __name__ == '__main__':
     to_x = np.linspace(-1666500.0, 1666500.0, 13332)
     to_y = np.linspace(-1666500.0, 1666500.0, 13332)
     variable = 'bed'
-    bedmachine_nc_path = './BedMachineAntarctica_2019-11-05_v01.nc'
+    bedmachine_nc_path = './NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc'
 
     interpolated = interp_bedmachine_antarctica(
         to_x,
