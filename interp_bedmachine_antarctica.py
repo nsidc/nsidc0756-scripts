@@ -109,7 +109,7 @@ def interp_bedmachine_antarctica(to_x, to_y, variable, return_grid=False, *, bed
     """
     if variable not in _POSSIBLE_VARIABLES:
         raise RuntimeError(
-            f'Unexpected variable name {variable}. Must be one of {possible_variables}'
+            f'Unexpected variable name {variable}. Must be one of {_POSSIBLE_VARIABLES}'
         )
 
     return _interpolate_with_xarray(
