@@ -6,7 +6,7 @@ nsidc0756-scripts
 ---
 
 Scripts related to [NSIDC-0756](https://nsidc.org/data/nsidc-0756): MEaSUREs
-BedMachine Antarctica, Version 2. This repository is a work in progress! 
+BedMachine Antarctica, Version 4. 
 
 The scripts that are currently in this repository can be used to convert between
 geographic lat/lon and polar stereographic coordinates, and for interpolating
