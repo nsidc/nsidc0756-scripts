@@ -10,7 +10,10 @@ _POSSIBLE_VARIABLES = (
     'bed',
     'errbed',
     'geoid',
-    'source'
+    'source',
+    'dataid',
+    'rgi',
+    'thickness',
 )
 
 
