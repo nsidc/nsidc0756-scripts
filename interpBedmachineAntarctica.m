@@ -9,7 +9,7 @@ function output = interpBedmachineAntarctica(X,Y,string),
 %
 %   - mask:   0 ocean, 1 land (ice free), 2 grounded ice, 3 floating ice
 %   - source: 1 IBCSO/RTopo-2, 2 MC, 3 interpolation, 4 hydrostatic eq, 
-%             5 Streamline diffusion, 6 Gravity inversion
+%             5 IFPA, 6 Gravity inversion
 %
 % Version 11/30/2018 Mathieu Morlighem mmorligh@uci.edu
 
