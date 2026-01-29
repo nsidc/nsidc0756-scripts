@@ -9,7 +9,7 @@ function output = interpBedmachineAntarctica(X,Y,string),
 %
 %   - mask:   0 ocean, 1 land (ice free), 2 grounded ice, 3 floating ice
 %   - source: 1 IBCSO/RTopo-2, 2 MC, 3 interpolation, 4 hydrostatic eq, 
-%             5 Streamline diffusion, 6 Gravity inversion
+%             5 IFPA, 6 Gravity inversion
 %
 % Version 11/30/2018 Mathieu Morlighem mmorligh@uci.edu
 
@@ -17,7 +17,7 @@ function output = interpBedmachineAntarctica(X,Y,string),
 if nargin<3, string = 'bed'; end
 
 %Path to dataset (might need to be changed manually)
-nc = './BedMachineAntarctica-2019-09-05.nc';
+nc = './NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc';
 
 %Load x and y from dataset
 xdata = double(ncread(nc,'x'));

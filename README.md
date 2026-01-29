@@ -6,7 +6,7 @@ nsidc0756-scripts
 ---
 
 Scripts related to [NSIDC-0756](https://nsidc.org/data/nsidc-0756): MEaSUREs
-BedMachine Antarctica, Version 2. This repository is a work in progress! 
+BedMachine Antarctica, Version 4. 
 
 The scripts that are currently in this repository can be used to convert between
 geographic lat/lon and polar stereographic coordinates, and for interpolating
@@ -42,7 +42,7 @@ from netCDF4 import Dataset
 
 from xy2ll import xy2ll
 
-ds = Dataset('BedMachineAntarctica_2019-11-05_v01.nc')
+ds = Dataset('NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc')
 xs = ds.variables['x'][:]
 ys = ds.variables['y'][:]
 
@@ -100,7 +100,7 @@ $ python
 >>> to_x = np.linspace(-1666500.0, 1666500.0, 13332)
 >>> to_y = np.linspace(-1666500.0, 1666500.0, 13332)
 >>> variable = 'bed'
->>> bedmachine_nc_path = './BedMachineAntarctica_2019-11-05_v01.nc'
+>>> bedmachine_nc_path = './NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc'
 >>> interpolated = interp_bedmachine_antarctica(
         to_x,
         to_y,
@@ -138,6 +138,27 @@ bed = interpBedmachineAntarctica(x,y,'bed');
 
 disp(bed)
 ```
+
+## Testing
+
+### Python
+
+First, download `NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc` and
+place it in the this directory.
+
+To run tests for the Python code:
+
+```
+pytest tests.py
+```
+
+Note that these tests are simple and only assert that the code runs without
+errors. Outputs should be checked for validity manually!
+
+### Matlab
+
+Tests are not currently defined for the matlab code. The code should be run and
+outputs checked for validity manually.
 
 ## License
 

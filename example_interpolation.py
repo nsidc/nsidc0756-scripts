@@ -2,7 +2,7 @@
 from ll2xy import ll2xy
 from interp_bedmachine_antarctica import interp_bedmachine_antarctica
 
-BEDMACHINE_NC_PATH = './BedMachineAntarctica_2019-11-05_v01.nc'
+BEDMACHINE_NC_PATH = './NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc'
 VARIABLE = 'bed'
 
 # Set `RETURN_AS_GRID` to `True` to get a grid of values instead of just the points represented

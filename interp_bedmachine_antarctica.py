@@ -10,7 +10,10 @@ _POSSIBLE_VARIABLES = (
     'bed',
     'errbed',
     'geoid',
-    'source'
+    'source',
+    'dataid',
+    'rgi',
+    'thickness',
 )
 
 
@@ -106,7 +109,7 @@ def interp_bedmachine_antarctica(to_x, to_y, variable, return_grid=False, *, bed
     """
     if variable not in _POSSIBLE_VARIABLES:
         raise RuntimeError(
-            f'Unexpected variable name {variable}. Must be one of {possible_variables}'
+            f'Unexpected variable name {variable}. Must be one of {_POSSIBLE_VARIABLES}'
         )
 
     return _interpolate_with_xarray(
@@ -123,7 +126,7 @@ if __name__ == '__main__':
     to_x = np.linspace(-1666500.0, 1666500.0, 13332)
     to_y = np.linspace(-1666500.0, 1666500.0, 13332)
     variable = 'bed'
-    bedmachine_nc_path = './BedMachineAntarctica_2019-11-05_v01.nc'
+    bedmachine_nc_path = './NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc'
 
     interpolated = interp_bedmachine_antarctica(
         to_x,
