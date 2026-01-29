@@ -57,7 +57,8 @@ def ll2xy(lat, lon, sgn=-1, central_meridian=0, standard_parallel=71):
 
     cnt1 = np.nonzero(latitude >= np.pi / 2.)[0]
 
-    if cnt1:
+    if len(cnt1):
         x[cnt1, 0] = 0.0
         y[cnt1, 0] = 0.0
+
     return x, y

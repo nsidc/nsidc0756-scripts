@@ -8,3 +8,4 @@ dependencies:
   - numpy ~=2.4
   - xarray ~=2026.1.0
   - scipy ~=1.17
+  - pytest

@@ -139,6 +139,27 @@ bed = interpBedmachineAntarctica(x,y,'bed');
 disp(bed)
 ```
 
+## Testing
+
+### Python
+
+First, download `NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc` and
+place it in the this directory.
+
+To run tests for the Python code:
+
+```
+pytest tests.py
+```
+
+Note that these tests are simple and only assert that the code runs without
+errors. Outputs should be checked for validity manually!
+
+### Matlab
+
+Tests are not currently defined for the matlab code. The code should be run and
+outputs checked for validity manually.
+
 ## License
 
 See [LICENSE](LICENSE.md).
